@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Support | Hotel Games</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+:root{--black:#030303;--red:#e50914;--red2:#8b0000;--muted:#aaa}
+body{background:var(--black);color:#fff}
+a{text-decoration:none;color:inherit}
+header{position:fixed;top:0;width:100%;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.88);border-bottom:1px solid rgba(229,9,20,.35);backdrop-filter:blur(12px);z-index:99}
+header img{height:120px}
+nav{display:flex;gap:20px;flex-wrap:wrap}
+nav a{color:#ddd;text-transform:uppercase;font-weight:700;font-size:13px}
+nav a:hover{color:var(--red)}
+.hero{padding:170px 7% 100px;background:radial-gradient(circle at 15% 20%,rgba(229,9,20,.35),transparent 25%),linear-gradient(120deg,#030303,#130000)}
+.hero h1{font-size:80px;text-transform:uppercase;letter-spacing:-3px}
+.hero h1 span{color:var(--red)}
+.hero p{margin-top:25px;font-size:22px;color:#d0d0d0;max-width:900px;line-height:1.7}
+.btn{display:inline-block;margin-top:30px;padding:15px 26px;background:linear-gradient(135deg,var(--red),var(--red2));font-weight:900;text-transform:uppercase;border-radius:4px}
+section{padding:80px 7%}
+.section-title{font-size:56px;text-transform:uppercase;margin-bottom:18px}
+.section-title span{color:var(--red)}
+.section-text{color:#b8b8b8;font-size:18px;line-height:1.7;max-width:900px;margin-bottom:35px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:#111;border-left:4px solid var(--red);padding:30px;border-radius:18px;border-top:1px solid rgba(255,255,255,.08)}
+.card i{font-size:34px;color:var(--red);margin-bottom:16px}
+.card h3{text-transform:uppercase;margin-bottom:12px}
+.card p{color:var(--muted);line-height:1.7}
+.support-layout{display:grid;grid-template-columns:1fr .8fr;gap:40px;align-items:start}
+form{background:#0d0d0f;border-left:5px solid var(--red);padding:35px;border-radius:20px;border-top:1px solid rgba(255,255,255,.08)}
+input,select,textarea{width:100%;padding:16px;margin-bottom:16px;background:#050505;color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:6px}
+textarea{height:160px}
+.panel{display:grid;gap:18px}
+.info{background:#111;padding:26px;border-radius:18px;border:1px solid rgba(255,255,255,.08)}
+.info h3{text-transform:uppercase;margin-bottom:10px;color:#fff}
+.info p{color:#aaa;line-height:1.65}
+.faq{background:#070707}
+details{background:#111;border-left:4px solid var(--red);padding:20px;border-radius:12px;margin-bottom:14px}
+summary{font-weight:900;text-transform:uppercase;cursor:pointer}
+details p{color:#aaa;margin-top:12px;line-height:1.6}
+footer{background:#050505;margin-top:60px;border-top:1px solid rgba(229,9,20,.35)}
+.bar{height:10px;background:linear-gradient(90deg,#8b0000,#e50914,#8b0000)}
+.foot{padding:50px 7%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.footer-links a{color:#ccc;font-weight:800;text-transform:uppercase;font-size:13px}
+.copy{background:#eee;color:#111;padding:24px 7%;font-weight:700}
+@media(max-width:900px){header{position:static;flex-direction:column;gap:16px}.hero h1{font-size:52px}.support-layout{grid-template-columns:1fr}}
+</style>
+<style>
+/* Updated support cards: Game Support, App Support, Safety & Privacy */
+.grid{
+  grid-template-columns:repeat(3,1fr)!important;
+}
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:1fr!important;
+  }
+}
+</style></head>
+<body>
+<header>
+<a href="index.html"><img alt="Hotel Games" src="hotelgamessticker.png"/></a>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="apps.html">Apps</a>
+<a href="news.html">News</a>
+<a href="media.html">Media</a>
+<a href="community.html">Community</a>
+<a href="support.html">Support</a>
+<a href="careers.html">Careers</a>
+<a href="legal.html">Legal</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+<div class="hero">
+<h1>Player <span>Support</span></h1>
+<p>Get help with Hotel Games products, apps, technical issues, account questions, bug reports, and general support requests.</p>
+<a class="btn" href="#support-form">Submit Request</a>
+</div>
+<section>
+<h2 class="section-title">How Can We <span>Help?</span></h2>
+<p class="section-text">Choose the support category that best matches your issue. Include screenshots, device details, and a clear description when possible.</p>
+<div class="grid">
+<div class="card"><i class="fa-solid fa-gamepad"></i><h3>Game Support</h3><p>Help with gameplay issues, updates, technical problems, and bug reports.</p></div>
+<div class="card"><i class="fa-solid fa-mobile-screen"></i><h3>App Support</h3><p>Support for Hotel Games apps.</p></div>
+<div class="card"><i class="fa-solid fa-shield-halved"></i><h3>Safety &amp; Privacy</h3><p>Ask questions about privacy, safety, child safety apps, accounts, and user protection.</p></div>
+</div>
+</section>
+<section id="support-form">
+<h2 class="section-title">Support <span>Request</span></h2>
+<p class="section-text">This form is ready as a front-end support page. You can connect it later to email, Firebase, Google Forms, or a help desk system.</p>
+<div class="support-layout">
+<form>
+<input placeholder="Full Name" required="" type="text"/>
+<input placeholder="Email Address" required="" type="email"/>
+<select required="">
+<option value="">Select Support Type</option>
+<option>Game Support</option>
+<option>App Support</option>
+<option>Bug Report</option>
+<option>Account Help</option>
+<option>Privacy / Safety</option>
+<option>General Support</option>
+</select>
+<input placeholder="Product Name, Example: TravelVIP+PLUSTOKEN or Fire Command" type="text"/>
+<textarea placeholder="Describe the issue"></textarea>
+<button class="btn" type="submit">Send Request</button>
+</form>
+<div class="panel">
+<div class="info"><h3>Before You Submit</h3><p>Include your device type, operating system, app or game version, screenshots if available, and clear steps to reproduce the issue.</p></div>
+<div class="info"><h3>Response Time</h3><p>Hotel Games reviews support requests as soon as possible. Critical issues and safety concerns should include detailed information.</p></div>
+<div class="info"><h3>Do Not Send</h3><p>Do not send passwords, payment information, private identification, or sensitive personal data through the support form.</p></div>
+</div>
+</div>
+</section>
+<section class="faq">
+<h2 class="section-title">Common <span>Questions</span></h2>
+<details><summary>Where can I get app support?</summary><p>Use the support request form and select App Support. Include the app name and device type.</p></details>
+<details><summary>How do I report a bug?</summary><p>Select Bug Report and describe what happened, what you expected, and how to recreate the issue.</p></details>
+<details><summary>Where can I ask about careers?</summary><p>Use the Careers page for jobs, internships, portfolios, and applications.</p></details>
+<details><summary>Where are legal policies?</summary><p>Visit the Legal page for Privacy Policy, Terms of Service, EULA, DMCA, and related information.</p></details>
+</section>
+<footer>
+<div class="bar"></div>
+<div class="foot">
+<div>
+<img alt="Hotel Games" src="hotelgamessticker.png" style="height:120px"/>
+<p style="color:#999;margin-top:8px">Serious games. Simulation. Mobile apps. Entertainment.</p>
+</div>
+<div class="footer-links">
+<a href="about.html">About Us</a><a href="apps.html">Apps</a><a href="news.html">News</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="support.html">Support</a><a href="careers.html">Careers</a><a href="legal.html">Legal</a><a href="contact.html">Contact</a>
+</div>
+</div>
+<div class="copy">© 2026 Hotel Games Studios. All Rights Reserved.</div>
+</footer>
+</body>
+</html>
