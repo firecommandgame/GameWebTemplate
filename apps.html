@@ -85,7 +85,8 @@ nav a:hover{color:var(--red)}
 }
 .screen h3{font-size:32px;text-transform:uppercase;margin-top:20px}
 .screen p{color:#cfcfcf;line-height:1.5}
-.store-pill{padding:12px 14px;background:#fff;color:#000;border-radius:9px;font-weight:900;text-align:center;text-transform:uppercase}
+.store-pill{display:block;padding:12px 14px;background:#fff;color:#000;border-radius:9px;font-weight:900;text-align:center;text-transform:uppercase;transition:transform .2s ease,box-shadow .2s ease}
+.store-pill:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(255,255,255,.18)}
 
 section{padding:90px 7%}
 .section-title{font-size:clamp(36px,4.5vw,64px);text-transform:uppercase;letter-spacing:-2px;margin-bottom:18px}
@@ -267,7 +268,7 @@ footer{
 <h3>TravelVIP+</h3>
 <p>Premium travel planning and trip organization.</p>
 </div>
-<div class="store-pill">Download</div>
+<a class="store-pill" href="https://apps.apple.com/us/app/travelvip/id6782228906" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-apple"></i> Download</a>
 </div>
 </div>
 </div>
@@ -294,6 +295,7 @@ footer{
 <span>Trip Tools</span>
 </div>
 <a class="btn" href="travelvipplus.html">Learn More</a>
+<a class="btn alt" href="https://apps.apple.com/us/app/travelvip/id6782228906" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-apple"></i> Download</a>
 <a class="btn alt" href="support.html">App Support</a>
 </div>
 <div class="app-panel">
