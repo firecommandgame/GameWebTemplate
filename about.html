@@ -1,222 +1,477 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>About Us</title>
+<title>About Us | Hotel Games</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#030303;color:#fff}
-header{position:fixed;top:0;width:100%;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.88);border-bottom:1px solid rgba(229,9,20,.35);backdrop-filter:blur(12px);z-index:99}
-header img{height:120px}
-nav{display:flex;gap:20px;flex-wrap:wrap}
-nav a{color:#ddd;text-decoration:none;text-transform:uppercase;font-weight:700;font-size:13px}
-nav a:hover{color:#e50914}
-.hero{padding:170px 7% 100px;background:radial-gradient(circle at 15% 20%,rgba(229,9,20,.35),transparent 25%),linear-gradient(120deg,#030303,#130000)}
-.hero h1{font-size:80px;text-transform:uppercase;letter-spacing:-3px}
-.hero h1 span{color:#e50914}
-.hero p{margin-top:25px;font-size:22px;color:#d0d0d0;max-width:900px;line-height:1.7}
-section{padding:80px 7%}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.card{background:#111;border-left:4px solid #e50914;padding:30px;border-radius:18px}
-.card i{font-size:34px;color:#e50914;margin-bottom:16px}
-.card h3{text-transform:uppercase;margin-bottom:12px}
-.card p{color:#aaa;line-height:1.7}
-.story{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
-.story-box{background:#0d0d0f;padding:40px;border-radius:20px;border:1px solid rgba(255,255,255,.08)}
-.story-box h2{font-size:54px;text-transform:uppercase;margin-bottom:20px}
-.story-box h2 span{color:#e50914}
-.story-box p{color:#bdbdbd;line-height:1.9;margin-bottom:18px;font-size:18px}
-.stats{display:grid;gap:20px}
-.stat{background:#111;padding:26px;border-radius:18px;border:1px solid rgba(255,255,255,.08);text-align:center}
-.stat b{display:block;font-size:48px;color:#e50914}
-footer{background:#050505;margin-top:60px;border-top:1px solid rgba(229,9,20,.35)}
-.bar{height:10px;background:linear-gradient(90deg,#8b0000,#e50914,#8b0000)}
-.foot{padding:50px 7%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
-.footer-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
-.footer-links a{color:#ccc;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:13px}
-.copy{background:#eee;color:#111;padding:24px 7%;font-weight:700}
-@media(max-width:900px){header{position:static;flex-direction:column;gap:16px} .story{grid-template-columns:1fr}.hero h1{font-size:52px}}
-</style>
-<style id="hotel-games-consistent-support-header-footer">
-/* Consistent Hotel Games header/footer copied from Support page */
-body{background:#030303;color:#fff}
-a{text-decoration:none;color:inherit}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+:root{
+  --black:#030303;
+  --panel:#111;
+  --red:#e50914;
+  --dark-red:#8b0000;
+  --muted:#aaa;
+  --white:#fff;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
 header{
-  position:fixed!important;
-  top:0!important;
-  left:0!important;
-  width:100%!important;
-  padding:18px 7%!important;
-  display:flex!important;
-  justify-content:space-between!important;
-  align-items:center!important;
-  background:rgba(0,0,0,.88)!important;
-  border-bottom:1px solid rgba(229,9,20,.35)!important;
-  backdrop-filter:blur(12px)!important;
-  z-index:9999!important;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.88);
+  border-bottom:1px solid rgba(229,9,20,.35);
+  backdrop-filter:blur(12px);
+  z-index:9999;
 }
-header img{height:120px!important;width:auto!important;display:block!important}
+
+header img{
+  height:120px;
+  width:auto;
+  display:block;
+}
+
 nav{
-  display:flex!important;
-  gap:20px!important;
-  flex-wrap:wrap!important;
-  justify-content:flex-end!important;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
 }
+
 nav a{
-  color:#ddd!important;
-  text-decoration:none!important;
-  text-transform:uppercase!important;
-  font-weight:700!important;
-  font-size:13px!important;
-  letter-spacing:0!important;
+  color:#ddd;
+  text-transform:uppercase;
+  font-weight:700;
+  font-size:13px;
 }
-nav a:hover{color:#e50914!important}
+
+nav a:hover{
+  color:var(--red);
+}
+
+/* HERO */
+.hero{
+  padding:190px 7% 100px;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(229,9,20,.35),transparent 25%),
+    linear-gradient(120deg,#030303,#130000);
+}
+
+.hero h1{
+  font-size:clamp(52px,7vw,80px);
+  text-transform:uppercase;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero p{
+  margin-top:25px;
+  font-size:22px;
+  color:#d0d0d0;
+  max-width:900px;
+  line-height:1.7;
+}
+
+/* GENERAL CONTENT */
+section{
+  padding:80px 7%;
+}
+
+.story{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:50px;
+  align-items:center;
+}
+
+.story-box{
+  background:#0d0d0f;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.story-box h2{
+  font-size:54px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.story-box h2 span{
+  color:var(--red);
+}
+
+.story-box p{
+  color:#bdbdbd;
+  line-height:1.9;
+  margin-bottom:18px;
+  font-size:18px;
+}
+
+.stats{
+  display:grid;
+  gap:20px;
+}
+
+.stat{
+  background:var(--panel);
+  padding:26px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:48px;
+  color:var(--red);
+  margin-bottom:5px;
+}
+
+.values-title{
+  font-size:56px;
+  text-transform:uppercase;
+  margin-bottom:30px;
+}
+
+.values-title span{
+  color:var(--red);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:var(--panel);
+  border-left:4px solid var(--red);
+  padding:30px;
+  border-radius:18px;
+}
+
+.card i{
+  font-size:34px;
+  color:var(--red);
+  margin-bottom:16px;
+}
+
+.card h3{
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* NEW FOOTER */
 footer{
-  background:#050505!important;
-  margin-top:60px!important;
-  border-top:1px solid rgba(229,9,20,.35)!important;
-  color:#fff!important;
+  background:#050505;
+  color:#fff;
+  margin-top:60px;
+  border-top:1px solid rgba(229,9,20,.35);
 }
-.bar{
-  height:10px!important;
-  background:linear-gradient(90deg,#8b0000,#e50914,#8b0000)!important;
+
+.footer-top{
+  height:10px;
+  background:linear-gradient(90deg,var(--dark-red),var(--red),var(--dark-red));
 }
-.foot{
-  padding:50px 7%!important;
-  display:flex!important;
-  justify-content:space-between!important;
-  flex-wrap:wrap!important;
-  gap:20px!important;
-  align-items:flex-start!important;
+
+.footer-main{
+  padding:50px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:30px;
 }
-.foot img{height:120px!important;width:auto!important;display:block!important}
+
+.footer-brand{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  flex:0 0 auto;
+}
+
+.footer-brand a{
+  display:inline-block;
+}
+
+.footer-brand img{
+  width:140px;
+  height:auto;
+  max-width:140px;
+  display:block;
+  object-fit:contain;
+  margin-bottom:12px;
+}
+
+.footer-brand p{
+  color:#999;
+  line-height:1.6;
+  max-width:340px;
+  font-size:14px;
+}
+
 .footer-links{
-  display:flex!important;
-  gap:22px!important;
-  flex-wrap:wrap!important;
-  align-items:center!important;
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  max-width:620px;
+  align-items:center;
 }
+
 .footer-links a{
-  color:#ccc!important;
-  text-decoration:none!important;
-  font-weight:800!important;
-  text-transform:uppercase!important;
-  font-size:13px!important;
+  color:#ccc;
+  font-size:13px;
+  font-weight:800;
+  text-transform:uppercase;
 }
-.footer-links a:hover{color:#e50914!important}
-.copy{
-  background:#eee!important;
-  color:#111!important;
-  padding:24px 7%!important;
-  font-weight:700!important;
+
+.footer-links a:hover{
+  color:var(--red);
 }
+
+footer .social{
+  margin:0;
+  display:flex;
+  gap:18px;
+}
+
+footer .social a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  height:auto;
+  background:transparent;
+  border:0;
+}
+
+footer .social a i{
+  font-size:28px;
+  color:#fff;
+  padding:0;
+}
+
+footer .social a:hover i{
+  color:var(--red);
+}
+
+.footer-bottom{
+  background:#eee;
+  color:#111;
+  padding:24px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  font-weight:700;
+}
+
+.footer-bottom a{
+  color:#111;
+  margin-right:20px;
+  font-weight:700;
+}
+
+.footer-bottom a:hover{
+  color:var(--red);
+}
+
+/* RESPONSIVE */
 @media(max-width:900px){
-  header{position:static!important;flex-direction:column!important;gap:16px!important}
-  nav{justify-content:center!important}
+  header{
+    position:static;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  nav{
+    justify-content:center;
+  }
+
+  .hero{
+    padding-top:100px;
+  }
+
+  .story{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:52px;
+  }
+
+  .footer-main,
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+    align-items:center;
+  }
+
+  .footer-brand{
+    align-items:center;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <header>
-<a href="index.html"><img alt="Hotel Games" src="hotelgamessticker.png"/></a>
-<nav>
-<a href="index.html">Home</a><a href="games.html">Games</a>
-<a href="about.html">About Us</a>
-<a href="apps.html">Apps</a>
-<a href="news.html">News</a>
-<a href="media.html">Media</a>
-<a href="community.html">Community</a>
-<a href="support.html">Support</a>
-<a href="careers.html">Careers</a>
-<a href="legal.html">Legal</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <a href="index.html">
+    <img alt="Hotel Games" src="hotelgamessticker.png"/>
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="about.html">About Us</a>
+    <a href="apps.html">Apps</a>
+    <a href="news.html">News</a>
+    <a href="media.html">Media</a>
+    <a href="community.html">Community</a>
+    <a href="support.html">Support</a>
+    <a href="careers.html">Careers</a>
+    <a href="legal.html">Legal</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
+
 <div class="hero">
-<h1>About <span>Hotel Games</span></h1>
-<p>Building the future of simulation and serious games through innovation, creativity, and player-focused development.</p>
+  <h1>About <span>Hotel Games</span></h1>
+  <p>Building the future of simulation and serious games through innovation, creativity, and player-focused development.</p>
 </div>
+
 <section class="story">
-<div class="story-box">
-<h2>Our <span>Story</span></h2>
-<p>Hotel Games Studios is a developer and marketer of games worldwide. With a focus on simulation and serious games, our studio intends on fulfilling a market hungry for interactive gameplay neglected by major gaming developers.</p>
-<h2 style="margin-top:35px">Our <span>Philosophy</span></h2>
-<p>Hotel Games seeks to cement itself among gaming studios by treating our employees with dignity and respect, focusing on innovation, and building customer loyalty by introducing game features that leave a lasting impression and listening to our consumer base as to what they would like to see in our games. At Hotel Games Studios software development is not just a profit-making venture but a way of life. Hotel Games Studios will empower our modelers, animators, and programmers to develop games they would like to play. Hotel Games will revolutionize gaming in a way that has not been previously seen before.</p>
-</div>
-<div class="stats">
-<div class="stat"><b>Global</b><span>Developer &amp; Marketer</span></div>
-<div class="stat"><b>Simulation</b><span>Core Studio Focus</span></div>
-<div class="stat"><b>Serious</b><span>Games With Purpose</span></div>
-<div class="stat"><b>Innovation</b><span>Customer-Focused Features</span></div>
-</div>
+  <div class="story-box">
+    <h2>Our <span>Story</span></h2>
+    <p>Hotel Games Studios is a developer and marketer of games worldwide. With a focus on simulation and serious games, our studio intends on fulfilling a market hungry for interactive gameplay neglected by major gaming developers.</p>
+
+    <h2 style="margin-top:35px">Our <span>Philosophy</span></h2>
+    <p>Hotel Games seeks to cement itself among gaming studios by treating our employees with dignity and respect, focusing on innovation, and building customer loyalty by introducing game features that leave a lasting impression and listening to our consumer base as to what they would like to see in our games. At Hotel Games Studios, software development is not just a profit-making venture but a way of life. Hotel Games Studios will empower our modelers, animators, and programmers to develop games they would like to play. Hotel Games will revolutionize gaming in a way that has not been previously seen before.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>Global</b><span>Developer &amp; Marketer</span></div>
+    <div class="stat"><b>Simulation</b><span>Core Studio Focus</span></div>
+    <div class="stat"><b>Serious</b><span>Games With Purpose</span></div>
+    <div class="stat"><b>Innovation</b><span>Customer-Focused Features</span></div>
+  </div>
 </section>
+
 <section>
-<h2 style="font-size:56px;text-transform:uppercase;margin-bottom:30px;">Our <span style="color:#e50914">Values</span></h2>
-<div class="grid">
-<div class="card"><i class="fa-solid fa-lightbulb"></i><h3>Innovation</h3><p>Hotel Games focuses on innovation and game features that leave a lasting impression.</p></div>
-<div class="card"><i class="fa-solid fa-users"></i><h3>Dignity &amp; Respect</h3><p>Hotel Games seeks to treat employees with dignity and respect.</p></div>
-<div class="card"><i class="fa-solid fa-gamepad"></i><h3>Interactive Gameplay</h3><p>Hotel Games intends to fulfill a market hungry for interactive gameplay.</p></div>
-<div class="card"><i class="fa-solid fa-comments"></i><h3>Consumer Feedback</h3><p>Hotel Games develops games based on player feedback.</p></div>
-</div>
+  <h2 class="values-title">Our <span>Values</span></h2>
+
+  <div class="grid">
+    <div class="card">
+      <i class="fa-solid fa-lightbulb"></i>
+      <h3>Innovation</h3>
+      <p>Hotel Games focuses on innovation and game features that leave a lasting impression.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-users"></i>
+      <h3>Dignity &amp; Respect</h3>
+      <p>Hotel Games seeks to treat employees with dignity and respect.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-gamepad"></i>
+      <h3>Interactive Gameplay</h3>
+      <p>Hotel Games intends to fulfill a market hungry for interactive gameplay.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-comments"></i>
+      <h3>Consumer Feedback</h3>
+      <p>Hotel Games develops games based on player feedback.</p>
+    </div>
+  </div>
 </section>
+
 <footer>
+  <div class="footer-top"></div>
 
-<div class="footer-top"></div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html">
+        <img src="hotelgamessticker.png" alt="Hotel Games"/>
+      </a>
+      <p>Serious games. Simulation. Mobile apps. Entertainment.</p>
+    </div>
 
-<div class="footer-main">
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="apps.html">Apps</a>
+      <a href="news.html">News</a>
+      <a href="media.html">Media</a>
+      <a href="community.html">Community</a>
+      <a href="support.html">Support</a>
+      <a href="careers.html">Careers</a>
+      <a href="legal.html">Legal</a>
+      <a href="contact.html">Contact</a>
+    </div>
 
-<div class="footer-brand">
-<a href="index.html">
-<img src="hotelgamessticker.png" alt="Hotel Games">
-</a>
-<p>Serious games. Simulation. Mobile apps. Entertainment.</p>
-</div>
+    <div class="social">
+      <a href="https://www.youtube.com/@HOTELGAMESAMERICAS" target="_blank" rel="noopener noreferrer" title="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
 
-<div class="footer-links">
-<a href="about.html">About Us</a>
-<a href="apps.html">Apps</a>
-<a href="news.html">News</a>
-<a href="media.html">Media</a>
-<a href="community.html">Community</a>
-<a href="support.html">Support</a>
-<a href="careers.html">Careers</a>
-<a href="legal.html">Legal</a>
-<a href="contact.html">Contact</a>
-</div>
+      <a href="https://x.com/HOTELGAMESUS" target="_blank" rel="noopener noreferrer" title="X">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
 
-<div class="social">
+      <a href="https://www.instagram.com/hotelgames/" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </div>
 
-<a href="https://www.youtube.com/@HOTELGAMESAMERICAS" target="_blank" title="YouTube">
-<i class="fa-brands fa-youtube"></i>
-</a>
+  <div class="footer-bottom">
+    <div>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="cookies.html">Cookie Policy</a>
+    </div>
 
-<a href="https://x.com/HOTELGAMESUS" target="_blank" title="X">
-<i class="fa-brands fa-x-twitter"></i>
-</a>
-
-<a href="https://www.instagram.com/hotelgames/" target="_blank" title="Instagram">
-<i class="fa-brands fa-instagram"></i>
-</a>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<div>
-<a href="privacy.html">Privacy Policy</a>
-<a href="terms.html">Terms of Service</a>
-<a href="cookies.html">Cookie Policy</a>
-</div>
-
-<p>© 2026 Hotel Games Studios. All Rights Reserved.</p>
-
-</div>
-
+    <p>© 2026 Hotel Games Studios. All Rights Reserved.</p>
+  </div>
 </footer>
 
 </body>
