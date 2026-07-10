@@ -173,7 +173,6 @@
     right: 0;
     width: 50%;
     height: 100%;
-    /* background: red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -190,20 +189,19 @@
 .right-info h1{
     font-size: 200px;
     color: #fff;
-    text-shadow: 
+    text-shadow:
         0 1px 0 #ccc,
         0 2px 0 #c9c9c9,
         0 3px 0 #bbb,
         0 4px 0 #b9b9b9,
-        0 5px 0 #aaa,  
-        0 6px 1px rgba(0, 0, 0, 0.1),  
-        0 0px 5px rgba(0, 0, 0, 0.1),  
-        0 1px 3px rgba(0, 0, 0, 0.3),  
-        0 3px 5px rgba(0, 0, 0, 0.2),  
-        0 5px 10px rgba(0, 0, 0, 0.25),  
-        0 10px 10px rgba(0, 0, 0, 0.2),  
-        0 20px 20px rgba(0, 0, 0, 0.15),  
-        ;
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0, 0, 0, 0.1),
+        0 0px 5px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 3px 5px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.2),
+        0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
 .right-info h3{
@@ -255,6 +253,149 @@
 
 .navigation span:nth-child(1):hover i{
     color: #444;
+}
+
+/* HOTEL GAMES FOOTER */
+footer{
+    background:#050505;
+    color:#fff;
+    margin-top:40px;
+}
+
+.footer-top{
+    height:10px;
+    background:linear-gradient(90deg,#8b0000,#e50914,#8b0000);
+}
+
+.footer-main{
+    padding:50px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-brand{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    flex:0 0 auto;
+}
+
+.footer-brand a{
+    display:inline-block;
+    width:auto;
+    height:auto;
+}
+
+.footer-brand img{
+    position:static !important;
+    width:140px !important;
+    height:auto !important;
+    max-width:140px !important;
+    object-fit:contain !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+    display:block;
+    margin-bottom:12px;
+}
+
+.footer-brand p{
+    color:#999;
+    font-size:1.4rem;
+    line-height:1.6;
+    max-width:340px;
+}
+
+.footer-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    max-width:620px;
+}
+
+.footer-links a{
+    color:#ccc;
+    font-size:1.3rem;
+    font-weight:800;
+    text-transform:uppercase;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    color:#e50914;
+}
+
+/* Scoped so your header .social rules do not enlarge or box the footer icons */
+footer .social{
+    margin:0;
+    display:flex;
+    gap:18px;
+}
+
+footer .social a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:auto;
+    height:auto;
+    background:transparent;
+    border:0;
+    border-radius:0;
+    text-decoration:none;
+}
+
+footer .social a:hover{
+    background:transparent;
+}
+
+footer .social a i{
+    display:block;
+    padding:0;
+    font-size:2.8rem;
+    color:#fff;
+}
+
+footer .social a:hover i{
+    color:#e50914;
+}
+
+.footer-bottom{
+    background:#eee;
+    color:#111;
+    padding:24px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    font-size:1.4rem;
+    font-weight:700;
+}
+
+.footer-bottom a{
+    color:#111;
+    margin-right:20px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.footer-bottom a:hover{
+    color:#e50914;
+}
+
+@media(max-width:900px){
+    .footer-main,
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+        align-items:center;
+    }
+
+    .footer-brand{
+        align-items:center;
+    }
 }
 
 
