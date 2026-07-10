@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
-<title>Apps</title>
+<title>Apps | Hotel Games</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 :root{
@@ -130,15 +130,23 @@ section{padding:90px 7%}
 .step h3{text-transform:uppercase;margin-bottom:8px}
 .step p{color:#aaa;line-height:1.6}
 
-footer{background:#050505;border-top:1px solid rgba(229,9,20,.35)}
-.footer-red{height:10px;background:linear-gradient(90deg,var(--darkred),var(--red),var(--darkred))}
-.footer-main{padding:50px 7%;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
-.footer-logo img{height:130px;width:auto;display:block;position:relative;left:60px}
-.footer-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+footer{background:#050505;color:#fff;margin-top:60px;border-top:1px solid rgba(229,9,20,.35)}
+.footer-top{height:10px;background:linear-gradient(90deg,#8b0000,#e50914,#8b0000)}
+.footer-main{padding:50px 7%;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start;flex:0 0 auto}
+.footer-brand a{display:inline-block}
+.footer-brand img{width:140px!important;height:auto!important;max-width:140px!important;display:block!important;object-fit:contain!important;margin-bottom:12px}
+.footer-brand p{color:#999;line-height:1.6;max-width:340px;font-size:14px}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap;max-width:620px;align-items:center}
 .footer-links a{color:#ccc;font-weight:800;text-transform:uppercase;font-size:13px}
 .footer-links a:hover{color:var(--red)}
-.social a{font-size:26px;margin-left:16px;color:#fff}
-.copyright{background:#eee;color:#111;padding:26px 7%;font-weight:700}
+footer .social{margin:0;display:flex;gap:18px;align-items:center}
+footer .social a{display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;background:transparent;border:0;color:#fff}
+footer .social a i{font-size:28px;color:#fff;padding:0}
+footer .social a:hover i{color:var(--red)}
+.footer-bottom{background:#eee;color:#111;padding:24px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;font-weight:700}
+.footer-bottom a{color:#111;margin-right:20px;font-weight:700}
+.footer-bottom a:hover{color:var(--red)}
 
 @media(max-width:980px){
  header{position:static;flex-direction:column;gap:15px}
@@ -146,7 +154,7 @@ footer{background:#050505;border-top:1px solid rgba(229,9,20,.35)}
  .hero,.app-card{grid-template-columns:1fr}
  .btn.alt{margin-left:0;margin-top:12px}
  .logo img{height:72px}
- .footer-logo img{left:0;margin:auto}
+ .footer-main,.footer-bottom{flex-direction:column;text-align:center;align-items:center}.footer-brand{align-items:center}
 }
 </style>
 <style>
@@ -157,84 +165,7 @@ footer{background:#050505;border-top:1px solid rgba(229,9,20,.35)}
 .step p{font-size:15px!important}
 @media(max-width:900px){.timeline{grid-template-columns:1fr!important}}
 </style>
-<style id="hotel-games-consistent-support-header-footer">
-/* Consistent Hotel Games header/footer copied from Support page */
-body{background:#030303;color:#fff}
-a{text-decoration:none;color:inherit}
-header{
-  position:fixed!important;
-  top:0!important;
-  left:0!important;
-  width:100%!important;
-  padding:18px 7%!important;
-  display:flex!important;
-  justify-content:space-between!important;
-  align-items:center!important;
-  background:rgba(0,0,0,.88)!important;
-  border-bottom:1px solid rgba(229,9,20,.35)!important;
-  backdrop-filter:blur(12px)!important;
-  z-index:9999!important;
-}
-header img{height:120px!important;width:auto!important;display:block!important}
-nav{
-  display:flex!important;
-  gap:20px!important;
-  flex-wrap:wrap!important;
-  justify-content:flex-end!important;
-}
-nav a{
-  color:#ddd!important;
-  text-decoration:none!important;
-  text-transform:uppercase!important;
-  font-weight:700!important;
-  font-size:13px!important;
-  letter-spacing:0!important;
-}
-nav a:hover{color:#e50914!important}
-footer{
-  background:#050505!important;
-  margin-top:60px!important;
-  border-top:1px solid rgba(229,9,20,.35)!important;
-  color:#fff!important;
-}
-.bar{
-  height:10px!important;
-  background:linear-gradient(90deg,#8b0000,#e50914,#8b0000)!important;
-}
-.foot{
-  padding:50px 7%!important;
-  display:flex!important;
-  justify-content:space-between!important;
-  flex-wrap:wrap!important;
-  gap:20px!important;
-  align-items:flex-start!important;
-}
-.foot img{height:120px!important;width:auto!important;display:block!important}
-.footer-links{
-  display:flex!important;
-  gap:22px!important;
-  flex-wrap:wrap!important;
-  align-items:center!important;
-}
-.footer-links a{
-  color:#ccc!important;
-  text-decoration:none!important;
-  font-weight:800!important;
-  text-transform:uppercase!important;
-  font-size:13px!important;
-}
-.footer-links a:hover{color:#e50914!important}
-.copy{
-  background:#eee!important;
-  color:#111!important;
-  padding:24px 7%!important;
-  font-weight:700!important;
-}
-@media(max-width:900px){
-  header{position:static!important;flex-direction:column!important;gap:16px!important}
-  nav{justify-content:center!important}
-}
-</style>
+
 </head>
 <body>
 <header>
@@ -307,7 +238,6 @@ footer{
 </div>
 </div>
 </section>
-<section class="roadmap">
 <footer>
 
 <div class="footer-top"></div>
@@ -335,15 +265,15 @@ footer{
 
 <div class="social">
 
-<a href="https://www.youtube.com/@HOTELGAMESAMERICAS" target="_blank" title="YouTube">
+<a href="https://www.youtube.com/@HOTELGAMESAMERICAS" target="_blank" rel="noopener noreferrer" title="YouTube">
 <i class="fa-brands fa-youtube"></i>
 </a>
 
-<a href="https://x.com/HOTELGAMESUS" target="_blank" title="X">
+<a href="https://x.com/HOTELGAMESUS" target="_blank" rel="noopener noreferrer" title="X">
 <i class="fa-brands fa-x-twitter"></i>
 </a>
 
-<a href="https://www.instagram.com/hotelgames/" target="_blank" title="Instagram">
+<a href="https://www.instagram.com/hotelgames/" target="_blank" rel="noopener noreferrer" title="Instagram">
 <i class="fa-brands fa-instagram"></i>
 </a>
 
@@ -366,9 +296,4 @@ footer{
 </footer>
 
 </body>
-</html>
-
-</body>
-</html>
-</section></body>
 </html>
