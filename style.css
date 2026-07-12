@@ -397,6 +397,15 @@ footer .social a:hover i{
         align-items:center;
     }
 }
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent fixed header from covering anchored sections */
+[id] {
+    scroll-margin-top: 120px;
+}
 
 
 
