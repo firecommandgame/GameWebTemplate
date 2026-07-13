@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hotel Games Admin</title>
+<link rel="stylesheet" href="cms.css">
+</head>
+<body>
+<header>
+  <img src="hotelgamessticker.png" alt="Hotel Games">
+  <nav>
+    <a href="admin.html">Admin</a>
+    <a href="news.html">News</a>
+    <a href="media.html">Media</a>
+    <a href="community.html">Community</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Hotel Games <span>Admin</span></h1>
+  <p class="small">Create one post and send it to News, Media, or Community.</p>
+</div>
+
+<section>
+  <form id="postForm">
+    <input id="title" placeholder="Post Title" required>
+    <select id="category" required>
+      <option value="">Select Category</option>
+      <option value="news">News</option>
+      <option value="media">Media</option>
+      <option value="community">Community</option>
+    </select>
+    <input id="image" placeholder="Image URL or filename">
+    <textarea id="body" placeholder="Post content" required></textarea>
+    <select id="status">
+      <option value="published">Publish</option>
+      <option value="draft">Save Draft</option>
+    </select>
+    <button class="btn" type="submit">Save Post</button>
+    <p class="small">This demo saves posts in your browser using localStorage. After Firebase config is added, it will publish to Firestore.</p>
+  </form>
+</section>
+
+<script src="cms-local-demo.js"></script>
+</body>
+</html>

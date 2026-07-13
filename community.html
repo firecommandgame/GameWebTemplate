@@ -1,226 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Community | Hotel Games</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
-<link href="cms.css" rel="stylesheet"/>
-
-<style>
-body{
-  background:#030303;
-  color:#fff;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* HEADER */
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  padding:18px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(0,0,0,.88);
-  border-bottom:1px solid rgba(229,9,20,.35);
-  backdrop-filter:blur(12px);
-  z-index:9999;
-}
-
-header img{
-  height:120px;
-  width:auto;
-  display:block;
-}
-
-nav{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-nav a{
-  color:#ddd;
-  text-transform:uppercase;
-  font-weight:700;
-  font-size:13px;
-}
-
-nav a:hover{
-  color:#e50914;
-}
-
-/* FOOTER */
-footer{
-  background:#050505;
-  color:#fff;
-  margin-top:60px;
-  border-top:1px solid rgba(229,9,20,.35);
-}
-
-.footer-top{
-  height:10px;
-  background:linear-gradient(90deg,#8b0000,#e50914,#8b0000);
-}
-
-.footer-main{
-  padding:50px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  flex-wrap:wrap;
-  gap:30px;
-}
-
-.footer-brand{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  flex:0 0 auto;
-}
-
-.footer-brand a{
-  display:inline-block;
-}
-
-.footer-brand img{
-  width:140px !important;
-  height:auto !important;
-  max-width:140px !important;
-  display:block !important;
-  object-fit:contain !important;
-  margin-bottom:12px;
-}
-
-.footer-brand p{
-  color:#999;
-  line-height:1.6;
-  max-width:340px;
-  font-size:14px;
-}
-
-.footer-links{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
-  max-width:620px;
-  align-items:center;
-}
-
-.footer-links a{
-  color:#ccc;
-  font-weight:800;
-  text-transform:uppercase;
-  font-size:13px;
-}
-
-.footer-links a:hover{
-  color:#e50914;
-}
-
-footer .social{
-  margin:0;
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-footer .social a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:auto;
-  height:auto;
-  background:transparent;
-  border:0;
-  color:#fff;
-}
-
-footer .social a i{
-  font-size:28px;
-  color:#fff;
-  padding:0;
-}
-
-footer .social a:hover i{
-  color:#e50914;
-}
-
-.footer-bottom{
-  background:#eee;
-  color:#111;
-  padding:24px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:15px;
-  font-weight:700;
-}
-
-.footer-bottom a{
-  color:#111;
-  margin-right:20px;
-  font-weight:700;
-}
-
-.footer-bottom a:hover{
-  color:#e50914;
-}
-
-@media(max-width:900px){
-  header{
-    position:static;
-    flex-direction:column;
-    gap:16px;
-  }
-
-  nav{
-    justify-content:center;
-  }
-
-  .footer-main,
-  .footer-bottom{
-    flex-direction:column;
-    text-align:center;
-    align-items:center;
-  }
-
-  .footer-brand{
-    align-items:center;
-  }
-}
-</style>
+<link rel="stylesheet" href="cms.css">
 </head>
-
 <body onload="loadPosts('community')">
-
 <header>
-  <a href="index.html">
-    <img alt="Hotel Games" src="hotelgamessticker.png"/>
-  </a>
-
+  <img src="hotelgamessticker.png" alt="Hotel Games">
   <nav>
     <a href="index.html">Home</a>
-    <a href="games.html">Games</a>
-    <a href="about.html">About Us</a>
-    <a href="apps.html">Apps</a>
+    <a href="admin.html">Admin</a>
     <a href="news.html">News</a>
     <a href="media.html">Media</a>
     <a href="community.html">Community</a>
-    <a href="support.html">Support</a>
-    <a href="careers.html">Careers</a>
-    <a href="legal.html">Legal</a>
-    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
@@ -233,54 +27,10 @@ footer .social a:hover i{
 </section>
 
 <footer>
-  <div class="footer-top"></div>
-
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a href="index.html">
-        <img src="hotelgamessticker.png" alt="Hotel Games"/>
-      </a>
-      <p>Serious games. Simulation. Mobile apps. Entertainment.</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="about.html">About Us</a>
-      <a href="apps.html">Apps</a>
-      <a href="news.html">News</a>
-      <a href="media.html">Media</a>
-      <a href="community.html">Community</a>
-      <a href="support.html">Support</a>
-      <a href="careers.html">Careers</a>
-      <a href="legal.html">Legal</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="social">
-      <a href="https://www.youtube.com/@HOTELGAMESAMERICAS" target="_blank" rel="noopener noreferrer" title="YouTube">
-        <i class="fa-brands fa-youtube"></i>
-      </a>
-
-      <a href="https://x.com/HOTELGAMESUS" target="_blank" rel="noopener noreferrer" title="X">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-
-      <a href="https://www.instagram.com/hotelgames/" target="_blank" rel="noopener noreferrer" title="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-<div>
-    <a href="legal.html#privacy">Privacy Policy</a>
-    <a href="legal.html#terms">Terms of Service</a>
-    <a href="legal.html#cookies">Cookie Policy</a>
-</div>
-
-    <p>© 2026 Hotel Games Studios. All Rights Reserved.</p>
-  </div>
+  <div class="footer-red"></div>
+  <div class="footer-main">© 2026 Hotel Games Studios. All Rights Reserved.</div>
 </footer>
 
-<script src="cms.js"></script>
+<script src="cms-local-demo.js"></script>
 </body>
 </html>
