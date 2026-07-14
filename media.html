@@ -2,134 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Media | Hotel Games</title>
 
     <link rel="stylesheet" href="cms.css">
 
     <style>
-        /*
-        Override the grid layout from cms.css.
-        Posts will appear one beneath another.
-        */
-        #posts.grid {
-            display: block;
+        #posts {
+            display: block !important;
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /*
-        Style each post created by cms.js.
-        cms.js creates <article class="card">.
-        */
         #posts .card {
+            display: block;
             width: 100%;
             margin-bottom: 60px;
             overflow: hidden;
-
             background: #111;
             border-left: 4px solid #e50914;
             border-radius: 18px;
         }
 
-        /*
-        Show the complete image instead of forcing it
-        into a 210-pixel-tall box.
-        */
         #posts .card img {
+            display: block !important;
             width: 100% !important;
             height: auto !important;
             max-height: none !important;
-
-            display: block !important;
-
             object-fit: contain !important;
-            object-position: center !important;
-
-            background: #000;
         }
 
-        #posts .card .content {
+        #posts .content {
             padding: 36px;
-        }
-
-        #posts .card .content h3 {
-            margin: 0 0 18px;
-
-            color: #fff;
-            font-size: clamp(28px, 4vw, 48px);
-            line-height: 1.1;
-            text-transform: uppercase;
-        }
-
-        #posts .card .content p {
-            color: #bbb;
-            font-size: 17px;
-            line-height: 1.8;
-        }
-
-        #posts .card .content .small {
-            margin-top: 20px;
-            color: #888;
-            font-size: 13px;
-        }
-
-        @media (max-width: 700px) {
-            #posts .card .content {
-                padding: 22px;
-            }
-
-            #posts .card .content p {
-                font-size: 16px;
-            }
         }
     </style>
 </head>
 
-<body onload="loadPosts('media')">
+<body>
 
-    <header>
-        <img
-            src="hotelgamessticker.png"
-            alt="Hotel Games"
-        >
+<header>
+    <img src="hotelgamessticker.png" alt="Hotel Games">
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="admin.html">Admin</a>
-            <a href="news.html">News</a>
-            <a href="media.html">Media</a>
-            <a href="community.html">Community</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="admin.html">Admin</a>
+        <a href="news.html">News</a>
+        <a href="media.html">Media</a>
+        <a href="community.html">Community</a>
+    </nav>
+</header>
 
-    <div class="hero">
-        <h1>
-            Media <span>Updates</span>
-        </h1>
+<div class="hero">
+    <h1>Media <span>Updates</span></h1>
+</div>
+
+<section>
+    <div id="posts">
+        <p>Loading posts...</p>
     </div>
+</section>
 
-    <section>
-        <div class="grid" id="posts">
-            <p>Loading posts...</p>
-        </div>
-    </section>
+<footer>
+    <div class="footer-red"></div>
+    <div class="footer-main">
+        © 2026 Hotel Games Studios. All Rights Reserved.
+    </div>
+</footer>
 
-    <footer>
-        <div class="footer-red"></div>
+<script type="module">
+    import "./cms.js";
 
-        <div class="footer-main">
-            © 2026 Hotel Games Studios. All Rights Reserved.
-        </div>
-    </footer>
-
-    <script type="module" src="cms.js"></script>
+    window.addEventListener("load", () => {
+        if (typeof window.loadPosts === "function") {
+            window.loadPosts("media");
+        } else {
+            console.error("loadPosts was not loaded from cms.js");
+        }
+    });
+</script>
 
 </body>
 </html>
