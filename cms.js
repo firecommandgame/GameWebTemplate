@@ -1,4 +1,4 @@
-// ======================================================
+/ ======================================================
 // HOTEL GAMES FIREBASE CMS
 // Handles:
 // - Firebase connection
@@ -124,33 +124,43 @@ function formatPostDate(timestamp) {
 
 
 // Convert a post into an HTML card.
-return `
-<article class="news-article">
+function createPostCard(post) {
+    const title = escapeHTML(post.title || "Untitled");
+    const body = escapeHTML(post.body || "").replace(/\n/g, "<br>");
+    const imageSource = getSafeImageSource(post.image || "");
+    const date = escapeHTML(formatPostDate(post.createdAt));
 
-    ${
-        imageSource
-        ? `
-        <img
-            class="hero-image"
-            src="${escapeHTML(imageSource)}"
-            alt="${title}"
-            loading="lazy">
-        `
-        : ""
-    }
+    return `
+        <article class="news-article">
 
-    <div class="article-content">
+            ${
+                imageSource
+                    ? `
+                        <img
+                            class="hero-image"
+                            src="${escapeHTML(imageSource)}"
+                            alt="${title}"
+                            loading="lazy"
+                        >
+                    `
+                    : ""
+            }
 
-        <p class="small">${date}</p>
+            <div class="article-content">
 
-        <h1>${title}</h1>
+                ${
+                    date
+                        ? `<p class="small">${date}</p>`
+                        : ""
+                }
 
-        <p>${body}</p>
+                <h1>${title}</h1>
+                <p>${body}</p>
 
-    </div>
+            </div>
 
-</article>
-`;
+        </article>
+    `;
 }
 
 
@@ -552,3 +562,4 @@ if (postForm) {
         }
     );
 }
+
