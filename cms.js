@@ -1,10 +1,5 @@
 // ======================================================
 // HOTEL GAMES FIREBASE CMS
-// Handles:
-// - Firebase connection
-// - Administrator login/logout
-// - Saving posts to Firestore
-// - Loading News, Media, and Community posts
 // ======================================================
 
 
@@ -50,6 +45,13 @@ const firebaseConfig = {
 
 
 // ------------------------------
+// Administrator account
+// ------------------------------
+
+const ADMIN_UID = "3LpxlvUbdaMJG8Dm8uqV5Cgu48k2";
+
+
+// ------------------------------
 // Initialize Firebase
 // ------------------------------
 
@@ -63,7 +65,7 @@ const auth = getAuth(app);
 // ======================================================
 
 
-// Prevent titles and body text from injecting HTML.
+// Escape text before inserting it into HTML.
 function escapeHTML(value = "") {
     return String(value).replace(/[&<>"']/g, character => {
         const entities = {
@@ -79,7 +81,7 @@ function escapeHTML(value = "") {
 }
 
 
-// Allow normal image filenames, relative paths, and HTTPS URLs.
+// Allow HTTPS image URLs and safe relative image paths.
 function getSafeImageSource(value = "") {
     const source = String(value).trim();
 
@@ -87,13 +89,12 @@ function getSafeImageSource(value = "") {
         return "";
     }
 
-    const isHttpsUrl =
-        source.startsWith("https://");
+    const isHttpsUrl = source.startsWith("https://");
 
     const isRelativePath =
         source.startsWith("./") ||
         source.startsWith("../") ||
-        /^[a-zA-Z0-9/_\-.%]+$/.test(source);
+        /^[a-zA-Z0-9/_\-.%()]+$/.test(source);
 
     if (isHttpsUrl || isRelativePath) {
         return source;
@@ -103,7 +104,7 @@ function getSafeImageSource(value = "") {
 }
 
 
-// Convert Firestore timestamps into readable dates.
+// Convert a Firestore timestamp into a readable date.
 function formatPostDate(timestamp) {
     if (!timestamp) {
         return "";
@@ -122,37 +123,40 @@ function formatPostDate(timestamp) {
         });
 
     } catch (error) {
-        console.error(
-            "Unable to format post date:",
-            error
-        );
-
+        console.error("Unable to format post date:", error);
         return "";
     }
 }
 
 
-// Convert a post into HTML.
+// Check whether a Firebase user is the administrator.
+function isAdministrator(user) {
+    return Boolean(
+        user &&
+        user.uid === ADMIN_UID
+    );
+}
+
+
+// Convert a post into display HTML.
 function createPostCard(post) {
-    const title =
-        escapeHTML(post.title || "Untitled");
+    const title = escapeHTML(
+        post.title || "Untitled"
+    );
 
-    /*
-    Avoids the regular-expression parsing problem.
-    Converts line breaks in Firestore text into <br> tags.
-    */
-    const body =
-        escapeHTML(post.body || "")
-            .split("\n")
-            .join("<br>");
+    const body = escapeHTML(
+        post.body || ""
+    )
+        .split("\n")
+        .join("<br>");
 
-    const imageSource =
-        getSafeImageSource(post.image || "");
+    const imageSource = getSafeImageSource(
+        post.image || ""
+    );
 
-    const date =
-        escapeHTML(
-            formatPostDate(post.createdAt)
-        );
+    const date = escapeHTML(
+        formatPostDate(post.createdAt)
+    );
 
     return `
         <article class="news-article">
@@ -206,13 +210,6 @@ async function loadPosts(category) {
     `;
 
     try {
-        /*
-        Retrieve all published posts.
-
-        Category filtering and sorting happen below
-        to avoid requiring a Firestore composite index.
-        */
-
         const postsQuery = query(
             collection(db, "posts"),
             where("status", "==", "published")
@@ -235,7 +232,7 @@ async function loadPosts(category) {
         });
 
 
-        // Display newest posts first.
+        // Newest posts first.
         posts.sort((firstPost, secondPost) => {
             const firstTime =
                 firstPost.createdAt?.toMillis?.() || 0;
@@ -264,24 +261,19 @@ async function loadPosts(category) {
                 .join("");
 
     } catch (error) {
-        console.error(
-            "Unable to load posts:",
-            error
-        );
+        console.error("Unable to load posts:", error);
 
         postsContainer.innerHTML = `
             <p class="small">
                 Posts could not be loaded.
-                Check the browser console,
-                Firebase connection,
-                and Firestore security rules.
+                Check Firebase and the browser console.
             </p>
         `;
     }
 }
 
 
-// Make loadPosts available to HTML onload attributes.
+// Make loadPosts available to HTML pages.
 window.loadPosts = loadPosts;
 
 
@@ -294,12 +286,12 @@ const postForm =
 
 if (postForm) {
 
-    // Hide publishing form until login is confirmed.
+    // Hide the publishing form until authorization is confirmed.
     postForm.style.display = "none";
 
 
     // ------------------------------
-    // Create login panel
+    // Create administrator login panel
     // ------------------------------
 
     const loginSection =
@@ -313,8 +305,7 @@ if (postForm) {
             <h2>Administrator Login</h2>
 
             <p class="small">
-                Sign in with the administrator account
-                created in Firebase Authentication.
+                Authorized Hotel Games administrators only.
             </p>
 
             <input
@@ -397,38 +388,26 @@ if (postForm) {
 
 
     // ------------------------------
-    // Get login elements
+    // Get administrator elements
     // ------------------------------
 
     const adminLoginForm =
-        document.getElementById(
-            "adminLoginForm"
-        );
+        document.getElementById("adminLoginForm");
 
     const loginEmail =
-        document.getElementById(
-            "loginEmail"
-        );
+        document.getElementById("loginEmail");
 
     const loginPassword =
-        document.getElementById(
-            "loginPassword"
-        );
+        document.getElementById("loginPassword");
 
     const loginMessage =
-        document.getElementById(
-            "loginMessage"
-        );
+        document.getElementById("loginMessage");
 
     const logoutBtn =
-        document.getElementById(
-            "logoutBtn"
-        );
+        document.getElementById("logoutBtn");
 
     const adminIdentity =
-        document.getElementById(
-            "adminIdentity"
-        );
+        document.getElementById("adminIdentity");
 
 
     // ------------------------------
@@ -445,11 +424,21 @@ if (postForm) {
                 "Signing in...";
 
             try {
-                await signInWithEmailAndPassword(
-                    auth,
-                    loginEmail.value.trim(),
-                    loginPassword.value
-                );
+                const credential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        loginEmail.value.trim(),
+                        loginPassword.value
+                    );
+
+                if (!isAdministrator(credential.user)) {
+                    await signOut(auth);
+
+                    loginMessage.textContent =
+                        "This account is not authorized.";
+
+                    return;
+                }
 
                 adminLoginForm.reset();
                 loginMessage.textContent = "";
@@ -491,42 +480,53 @@ if (postForm) {
 
 
     // ------------------------------
-    // Detect login status
+    // Detect authentication status
     // ------------------------------
 
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(
+        auth,
+        async user => {
 
-        if (user) {
-            loginSection.style.display =
-                "none";
+            if (isAdministrator(user)) {
+                loginSection.style.display = "none";
+                postForm.style.display = "";
+                adminToolbar.style.display = "";
 
-            postForm.style.display =
-                "";
+                adminIdentity.textContent =
+                    `Signed in as ${user.email}`;
 
-            adminToolbar.style.display =
-                "";
+                return;
+            }
 
-            adminIdentity.textContent =
-                `Signed in as ${user.email}`;
 
-        } else {
-            loginSection.style.display =
-                "";
+            postForm.style.display = "none";
+            adminToolbar.style.display = "none";
+            loginSection.style.display = "";
 
-            postForm.style.display =
-                "none";
+            adminIdentity.textContent = "";
 
-            adminToolbar.style.display =
-                "none";
 
-            adminIdentity.textContent =
-                "";
+            // Automatically sign out any non-admin account.
+            if (user) {
+                try {
+                    await signOut(auth);
+
+                    loginMessage.textContent =
+                        "This account is not authorized.";
+
+                } catch (error) {
+                    console.error(
+                        "Unauthorized account sign-out failed:",
+                        error
+                    );
+                }
+            }
         }
-    });
+    );
 
 
     // ------------------------------
-    // Save post to Firestore
+    // Save a post to Firestore
     // ------------------------------
 
     postForm.addEventListener(
@@ -535,9 +535,10 @@ if (postForm) {
 
             event.preventDefault();
 
-            if (!auth.currentUser) {
+
+            if (!isAdministrator(auth.currentUser)) {
                 alert(
-                    "You must sign in before saving a post."
+                    "You are not authorized to publish posts."
                 );
 
                 return;
@@ -565,7 +566,22 @@ if (postForm) {
                 );
 
 
-            // Validate required fields.
+            if (
+                !titleInput ||
+                !categoryInput ||
+                !imageInput ||
+                !bodyInput ||
+                !statusInput ||
+                !submitButton
+            ) {
+                alert(
+                    "The administrator form is missing required fields."
+                );
+
+                return;
+            }
+
+
             if (!titleInput.value.trim()) {
                 alert("Enter a post title.");
                 return;
@@ -582,12 +598,43 @@ if (postForm) {
             }
 
 
+            const allowedCategories = [
+                "news",
+                "media",
+                "community"
+            ];
+
+            const allowedStatuses = [
+                "published",
+                "draft"
+            ];
+
+
+            if (
+                !allowedCategories.includes(
+                    categoryInput.value
+                )
+            ) {
+                alert("Select a valid category.");
+                return;
+            }
+
+
+            if (
+                !allowedStatuses.includes(
+                    statusInput.value
+                )
+            ) {
+                alert("Select a valid post status.");
+                return;
+            }
+
+
             const originalButtonText =
                 submitButton.textContent;
 
             submitButton.disabled = true;
-            submitButton.textContent =
-                "Saving...";
+            submitButton.textContent = "Saving...";
 
 
             try {
@@ -613,7 +660,7 @@ if (postForm) {
                             serverTimestamp(),
 
                         authorEmail:
-                            auth.currentUser.email,
+                            auth.currentUser.email || "",
 
                         authorUid:
                             auth.currentUser.uid
@@ -622,8 +669,7 @@ if (postForm) {
 
 
                 if (
-                    statusInput.value ===
-                    "published"
+                    statusInput.value === "published"
                 ) {
                     alert(
                         "Post published successfully."
@@ -649,11 +695,9 @@ if (postForm) {
 
             } finally {
                 submitButton.disabled = false;
-
                 submitButton.textContent =
                     originalButtonText;
             }
         }
     );
 }
-
