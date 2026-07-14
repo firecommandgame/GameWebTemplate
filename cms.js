@@ -124,43 +124,33 @@ function formatPostDate(timestamp) {
 
 
 // Convert a post into an HTML card.
-function createPostCard(post) {
-    const title = escapeHTML(post.title || "Untitled");
-    const body = escapeHTML(post.body || "").replace(/\n/g, "<br>");
-    const imageSource = getSafeImageSource(post.image || "");
-    const date = escapeHTML(formatPostDate(post.createdAt));
+return `
+<article class="news-article">
 
-    return `
-        <article class="card">
+    ${
+        imageSource
+        ? `
+        <img
+            class="hero-image"
+            src="${escapeHTML(imageSource)}"
+            alt="${title}"
+            loading="lazy">
+        `
+        : ""
+    }
 
-            ${
-                imageSource
-                    ? `
-                        <img
-                            src="${escapeHTML(imageSource)}"
-                            alt="${title}"
-                            loading="lazy"
-                        >
-                    `
-                    : ""
-            }
+    <div class="article-content">
 
-            <div class="content">
+        <p class="small">${date}</p>
 
-                <h3>${title}</h3>
+        <h1>${title}</h1>
 
-                <p>${body}</p>
+        <p>${body}</p>
 
-                ${
-                    date
-                        ? `<p class="small">${date}</p>`
-                        : ""
-                }
+    </div>
 
-            </div>
-
-        </article>
-    `;
+</article>
+`;
 }
 
 
