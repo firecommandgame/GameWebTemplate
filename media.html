@@ -16,34 +16,70 @@
             margin: 0 auto;
         }
 
-        #posts .card {
+        #posts .news-article {
             display: block;
             width: 100%;
             margin-bottom: 60px;
+            padding: 0;
             overflow: hidden;
             background: #111;
             border-left: 4px solid #e50914;
             border-radius: 18px;
         }
 
-        #posts .card img {
+        #posts .hero-image {
             display: block !important;
             width: 100% !important;
             height: auto !important;
             max-height: none !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
             object-fit: contain !important;
+            background: #050505;
         }
 
-        #posts .content {
+        #posts .article-content {
             padding: 36px;
+        }
+
+        #posts .article-content h1 {
+            margin: 0 0 18px;
+            color: #fff;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        #posts .article-content p {
+            color: #c7c7c7;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        #posts .article-content .small {
+            margin: 0 0 18px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            #posts .article-content {
+                padding: 22px;
+            }
+
+            #posts .article-content p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
-<body>
+<body onload="loadPosts('media')">
 
 <header>
-    <img src="hotelgamessticker.png" alt="Hotel Games">
+    <a href="index.html">
+        <img src="hotelgamessticker.png" alt="Hotel Games">
+    </a>
 
     <nav>
         <a href="index.html">Home</a>
@@ -60,28 +96,19 @@
 
 <section>
     <div id="posts">
-        <p>Loading posts...</p>
+        <p class="small">Loading posts...</p>
     </div>
 </section>
 
 <footer>
     <div class="footer-red"></div>
+
     <div class="footer-main">
         © 2026 Hotel Games Studios. All Rights Reserved.
     </div>
 </footer>
 
-<script type="module">
-    import "./cms.js";
-
-    window.addEventListener("load", () => {
-        if (typeof window.loadPosts === "function") {
-            window.loadPosts("media");
-        } else {
-            console.error("loadPosts was not loaded from cms.js");
-        }
-    });
-</script>
+<script type="module" src="./cms.js"></script>
 
 </body>
 </html>
