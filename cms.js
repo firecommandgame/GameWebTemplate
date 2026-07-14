@@ -1,4 +1,4 @@
-/ ======================================================
+// ======================================================
 // HOTEL GAMES FIREBASE CMS
 // Handles:
 // - Firebase connection
@@ -6,6 +6,7 @@
 // - Saving posts to Firestore
 // - Loading News, Media, and Community posts
 // ======================================================
+
 
 // ------------------------------
 // Firebase imports
@@ -61,7 +62,8 @@ const auth = getAuth(app);
 // SECURITY AND DISPLAY HELPERS
 // ======================================================
 
-// Prevent titles and body text from injecting HTML into the page.
+
+// Prevent titles and body text from injecting HTML.
 function escapeHTML(value = "") {
     return String(value).replace(/[&<>"']/g, character => {
         const entities = {
@@ -85,7 +87,9 @@ function getSafeImageSource(value = "") {
         return "";
     }
 
-    const isHttpsUrl = source.startsWith("https://");
+    const isHttpsUrl =
+        source.startsWith("https://");
+
     const isRelativePath =
         source.startsWith("./") ||
         source.startsWith("../") ||
@@ -116,19 +120,39 @@ function formatPostDate(timestamp) {
             month: "long",
             day: "numeric"
         });
+
     } catch (error) {
-        console.error("Unable to format post date:", error);
+        console.error(
+            "Unable to format post date:",
+            error
+        );
+
         return "";
     }
 }
 
 
-// Convert a post into an HTML card.
+// Convert a post into HTML.
 function createPostCard(post) {
-    const title = escapeHTML(post.title || "Untitled");
-    const body = escapeHTML(post.body || "").replace(/\n/g, "<br>");
-    const imageSource = getSafeImageSource(post.image || "");
-    const date = escapeHTML(formatPostDate(post.createdAt));
+    const title =
+        escapeHTML(post.title || "Untitled");
+
+    /*
+    Avoids the regular-expression parsing problem.
+    Converts line breaks in Firestore text into <br> tags.
+    */
+    const body =
+        escapeHTML(post.body || "")
+            .split("\n")
+            .join("<br>");
+
+    const imageSource =
+        getSafeImageSource(post.image || "");
+
+    const date =
+        escapeHTML(
+            formatPostDate(post.createdAt)
+        );
 
     return `
         <article class="news-article">
@@ -155,6 +179,7 @@ function createPostCard(post) {
                 }
 
                 <h1>${title}</h1>
+
                 <p>${body}</p>
 
             </div>
@@ -169,7 +194,8 @@ function createPostCard(post) {
 // ======================================================
 
 async function loadPosts(category) {
-    const postsContainer = document.getElementById("posts");
+    const postsContainer =
+        document.getElementById("posts");
 
     if (!postsContainer) {
         return;
@@ -181,10 +207,10 @@ async function loadPosts(category) {
 
     try {
         /*
-        This query retrieves published posts.
+        Retrieve all published posts.
 
-        Category filtering and sorting happen in JavaScript.
-        This avoids requiring a Firestore composite index.
+        Category filtering and sorting happen below
+        to avoid requiring a Firestore composite index.
         */
 
         const postsQuery = query(
@@ -192,7 +218,8 @@ async function loadPosts(category) {
             where("status", "==", "published")
         );
 
-        const querySnapshot = await getDocs(postsQuery);
+        const querySnapshot =
+            await getDocs(postsQuery);
 
         const posts = [];
 
@@ -207,7 +234,8 @@ async function loadPosts(category) {
             }
         });
 
-        // Newest post first.
+
+        // Display newest posts first.
         posts.sort((firstPost, secondPost) => {
             const firstTime =
                 firstPost.createdAt?.toMillis?.() || 0;
@@ -217,6 +245,7 @@ async function loadPosts(category) {
 
             return secondTime - firstTime;
         });
+
 
         if (posts.length === 0) {
             postsContainer.innerHTML = `
@@ -228,28 +257,31 @@ async function loadPosts(category) {
             return;
         }
 
-        postsContainer.innerHTML = posts
-            .map(createPostCard)
-            .join("");
+
+        postsContainer.innerHTML =
+            posts
+                .map(createPostCard)
+                .join("");
 
     } catch (error) {
-        console.error("Unable to load posts:", error);
+        console.error(
+            "Unable to load posts:",
+            error
+        );
 
         postsContainer.innerHTML = `
             <p class="small">
-                Posts could not be loaded. Check your Firebase
-                connection and Firestore security rules.
+                Posts could not be loaded.
+                Check the browser console,
+                Firebase connection,
+                and Firestore security rules.
             </p>
         `;
     }
 }
 
 
-// Make loadPosts available to HTML body onload attributes.
-//
-// Example:
-// <body onload="loadPosts('media')">
-
+// Make loadPosts available to HTML onload attributes.
 window.loadPosts = loadPosts;
 
 
@@ -257,11 +289,12 @@ window.loadPosts = loadPosts;
 // ADMIN PAGE
 // ======================================================
 
-const postForm = document.getElementById("postForm");
+const postForm =
+    document.getElementById("postForm");
 
 if (postForm) {
 
-    // Hide the publishing form until authentication is confirmed.
+    // Hide publishing form until login is confirmed.
     postForm.style.display = "none";
 
 
@@ -269,7 +302,8 @@ if (postForm) {
     // Create login panel
     // ------------------------------
 
-    const loginSection = document.createElement("section");
+    const loginSection =
+        document.createElement("section");
 
     loginSection.id = "adminLoginSection";
 
@@ -279,8 +313,8 @@ if (postForm) {
             <h2>Administrator Login</h2>
 
             <p class="small">
-                Sign in with the administrator account created
-                in Firebase Authentication.
+                Sign in with the administrator account
+                created in Firebase Authentication.
             </p>
 
             <input
@@ -316,12 +350,17 @@ if (postForm) {
         </form>
     `;
 
-    const formSection = postForm.closest("section");
+
+    const formSection =
+        postForm.closest("section");
 
     if (formSection) {
         formSection.before(loginSection);
     } else {
-        postForm.parentNode.insertBefore(loginSection, postForm);
+        postForm.parentNode.insertBefore(
+            loginSection,
+            postForm
+        );
     }
 
 
@@ -329,7 +368,8 @@ if (postForm) {
     // Create administrator toolbar
     // ------------------------------
 
-    const adminToolbar = document.createElement("div");
+    const adminToolbar =
+        document.createElement("div");
 
     adminToolbar.id = "adminToolbar";
     adminToolbar.style.display = "none";
@@ -361,22 +401,34 @@ if (postForm) {
     // ------------------------------
 
     const adminLoginForm =
-        document.getElementById("adminLoginForm");
+        document.getElementById(
+            "adminLoginForm"
+        );
 
     const loginEmail =
-        document.getElementById("loginEmail");
+        document.getElementById(
+            "loginEmail"
+        );
 
     const loginPassword =
-        document.getElementById("loginPassword");
+        document.getElementById(
+            "loginPassword"
+        );
 
     const loginMessage =
-        document.getElementById("loginMessage");
+        document.getElementById(
+            "loginMessage"
+        );
 
     const logoutBtn =
-        document.getElementById("logoutBtn");
+        document.getElementById(
+            "logoutBtn"
+        );
 
     const adminIdentity =
-        document.getElementById("adminIdentity");
+        document.getElementById(
+            "adminIdentity"
+        );
 
 
     // ------------------------------
@@ -389,7 +441,8 @@ if (postForm) {
 
             event.preventDefault();
 
-            loginMessage.textContent = "Signing in...";
+            loginMessage.textContent =
+                "Signing in...";
 
             try {
                 await signInWithEmailAndPassword(
@@ -402,7 +455,10 @@ if (postForm) {
                 loginMessage.textContent = "";
 
             } catch (error) {
-                console.error("Administrator sign-in failed:", error);
+                console.error(
+                    "Administrator sign-in failed:",
+                    error
+                );
 
                 loginMessage.textContent =
                     "Sign-in failed. Check your email and password.";
@@ -421,8 +477,12 @@ if (postForm) {
 
             try {
                 await signOut(auth);
+
             } catch (error) {
-                console.error("Sign-out failed:", error);
+                console.error(
+                    "Sign-out failed:",
+                    error
+                );
 
                 alert("Unable to sign out.");
             }
@@ -437,19 +497,30 @@ if (postForm) {
     onAuthStateChanged(auth, user => {
 
         if (user) {
-            loginSection.style.display = "none";
-            postForm.style.display = "";
-            adminToolbar.style.display = "";
+            loginSection.style.display =
+                "none";
+
+            postForm.style.display =
+                "";
+
+            adminToolbar.style.display =
+                "";
 
             adminIdentity.textContent =
                 `Signed in as ${user.email}`;
 
         } else {
-            loginSection.style.display = "";
-            postForm.style.display = "none";
-            adminToolbar.style.display = "none";
+            loginSection.style.display =
+                "";
 
-            adminIdentity.textContent = "";
+            postForm.style.display =
+                "none";
+
+            adminToolbar.style.display =
+                "none";
+
+            adminIdentity.textContent =
+                "";
         }
     });
 
@@ -465,9 +536,13 @@ if (postForm) {
             event.preventDefault();
 
             if (!auth.currentUser) {
-                alert("You must sign in before saving a post.");
+                alert(
+                    "You must sign in before saving a post."
+                );
+
                 return;
             }
+
 
             const titleInput =
                 document.getElementById("title");
@@ -511,24 +586,31 @@ if (postForm) {
                 submitButton.textContent;
 
             submitButton.disabled = true;
-            submitButton.textContent = "Saving...";
+            submitButton.textContent =
+                "Saving...";
 
 
             try {
                 await addDoc(
                     collection(db, "posts"),
                     {
-                        title: titleInput.value.trim(),
+                        title:
+                            titleInput.value.trim(),
 
-                        category: categoryInput.value,
+                        category:
+                            categoryInput.value,
 
-                        image: imageInput.value.trim(),
+                        image:
+                            imageInput.value.trim(),
 
-                        body: bodyInput.value.trim(),
+                        body:
+                            bodyInput.value.trim(),
 
-                        status: statusInput.value,
+                        status:
+                            statusInput.value,
 
-                        createdAt: serverTimestamp(),
+                        createdAt:
+                            serverTimestamp(),
 
                         authorEmail:
                             auth.currentUser.email,
@@ -538,16 +620,27 @@ if (postForm) {
                     }
                 );
 
-                if (statusInput.value === "published") {
-                    alert("Post published successfully.");
+
+                if (
+                    statusInput.value ===
+                    "published"
+                ) {
+                    alert(
+                        "Post published successfully."
+                    );
                 } else {
-                    alert("Draft saved successfully.");
+                    alert(
+                        "Draft saved successfully."
+                    );
                 }
 
                 postForm.reset();
 
             } catch (error) {
-                console.error("Unable to save post:", error);
+                console.error(
+                    "Unable to save post:",
+                    error
+                );
 
                 alert(
                     "The post could not be saved. " +
@@ -556,6 +649,7 @@ if (postForm) {
 
             } finally {
                 submitButton.disabled = false;
+
                 submitButton.textContent =
                     originalButtonText;
             }
