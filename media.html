@@ -1,36 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Media | Hotel Games</title>
-<link rel="stylesheet" href="cms.css">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Media | Hotel Games</title>
+
+    <link rel="stylesheet" href="cms.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #030303;
+            --dark: #111111;
+            --red: #e50914;
+            --dark-red: #8b0000;
+            --gray: #aaaaaa;
+            --white: #ffffff;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            width: 100%;
+            padding: 18px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(229, 9, 20, 0.35);
+            backdrop-filter: blur(12px);
+        }
+
+        header img {
+            width: auto;
+            height: 88px;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #dddddd;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        /* =========================
+           MEDIA HERO
+        ========================= */
+
+        .hero {
+            min-height: 72vh;
+            padding: 180px 7% 90px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(229, 9, 20, 0.35),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 85% 65%,
+                    rgba(139, 0, 0, 0.28),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    120deg,
+                    #030303,
+                    #130000
+                );
+        }
+
+        .hero h1 {
+            font-size: clamp(52px, 8vw, 100px);
+            line-height: 0.9;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+            text-shadow: 0 0 35px rgba(229, 9, 20, 0.4);
+        }
+
+        /* =========================
+           MEDIA POSTS
+        ========================= */
+
+        main {
+            padding: 85px 7%;
+        }
+
+        #posts {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /*
+        Your cms.js creates:
+
+        <article class="card">
+            <img>
+            <div class="content">
+                <h3>Title</h3>
+                <p>Body</p>
+            </div>
+        </article>
+        */
+
+        #posts .card {
+            width: 100%;
+            margin-bottom: 70px;
+
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--red);
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.55),
+                0 0 30px rgba(229, 9, 20, 0.08);
+        }
+
+        /*
+        Full-size image.
+
+        No fixed 210px height.
+        No object-fit: cover.
+        The entire image remains visible.
+        */
+
+        #posts .card > img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+
+            display: block;
+
+            object-fit: contain;
+            object-position: center;
+
+            background: #000000;
+        }
+
+        #posts .content {
+            padding: 42px;
+        }
+
+        #posts .content h1,
+        #posts .content h2,
+        #posts .content h3,
+        #posts .content h4 {
+            margin-bottom: 20px;
+
+            color: var(--white);
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        #posts .content p {
+            color: #c7c7c7;
+            font-size: 18px;
+            line-height: 1.85;
+        }
+
+        #posts .content .small {
+            margin-top: 24px;
+
+            color: #888888;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        #posts > .small {
+            color: var(--gray);
+            font-size: 17px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 60px;
+            background: #050505;
+            border-top: 1px solid rgba(229, 9, 20, 0.35);
+        }
+
+        .footer-red {
+            height: 10px;
+
+            background: linear-gradient(
+                90deg,
+                var(--dark-red),
+                var(--red),
+                var(--dark-red)
+            );
+        }
+
+        .footer-main {
+            padding: 32px 7%;
+
+            color: #cccccc;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 950px) {
+            header {
+                position: static;
+
+                flex-direction: column;
+                justify-content: center;
+
+                padding: 20px 5%;
+            }
+
+            header img {
+                height: 72px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 55vh;
+                padding: 90px 6% 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            main {
+                padding: 55px 5%;
+            }
+
+            #posts .content {
+                padding: 28px;
+            }
+
+            #posts .content p {
+                font-size: 16px;
+                line-height: 1.75;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            #posts .card {
+                margin-bottom: 45px;
+                border-radius: 14px;
+            }
+
+            #posts .content {
+                padding: 22px;
+            }
+
+            #posts .content h1,
+            #posts .content h2,
+            #posts .content h3,
+            #posts .content h4 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
+
 <body onload="loadPosts('media')">
-<header>
-  <img src="hotelgamessticker.png" alt="Hotel Games">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="admin.html">Admin</a>
-    <a href="news.html">News</a>
-    <a href="media.html">Media</a>
-    <a href="community.html">Community</a>
-  </nav>
-</header>
 
-<div class="hero">
-  <h1>Media <span>Updates</span></h1>
-</div>
+    <header>
+        <a href="index.html">
+            <img
+                src="hotelgamessticker.png"
+                alt="Hotel Games"
+            >
+        </a>
 
-<section>
-  <div class="grid" id="posts"></div>
-</section>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="admin.html">Admin</a>
+            <a href="news.html">News</a>
+            <a href="media.html">Media</a>
+            <a href="community.html">Community</a>
+        </nav>
+    </header>
 
-<footer>
-  <div class="footer-red"></div>
-  <div class="footer-main">© 2026 Hotel Games Studios. All Rights Reserved.</div>
-</footer>
+    <div class="hero">
+        <h1>
+            Media <span>Updates</span>
+        </h1>
+    </div>
 
-<script type="module" src="cms.js"></script>
+    <main>
+        <div id="posts"></div>
+    </main>
+
+    <footer>
+        <div class="footer-red"></div>
+
+        <div class="footer-main">
+            © 2026 Hotel Games Studios. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script
+        type="module"
+        src="cms.js"
+    ></script>
+
 </body>
 </html>
