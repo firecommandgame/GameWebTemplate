@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
 
     <title>Media | Hotel Games</title>
 
-    <link rel="stylesheet" href="cms.css">
+    <link rel="stylesheet" href="./cms.css">
 
     <style>
         #posts {
@@ -19,12 +23,15 @@
         #posts .news-article {
             display: block;
             width: 100%;
-            margin-bottom: 60px;
+            margin: 0 auto 60px;
             padding: 0;
             overflow: hidden;
+
             background: #111;
             border-left: 4px solid #e50914;
             border-radius: 18px;
+
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
         }
 
         #posts .hero-image {
@@ -32,18 +39,23 @@
             width: 100% !important;
             height: auto !important;
             max-height: none !important;
+
             margin: 0 !important;
             border-radius: 0 !important;
+
             object-fit: contain !important;
+            object-position: center !important;
+
             background: #050505;
         }
 
         #posts .article-content {
-            padding: 36px;
+            padding: 40px;
         }
 
         #posts .article-content h1 {
             margin: 0 0 18px;
+
             color: #fff;
             font-size: clamp(30px, 4vw, 48px);
             line-height: 1.1;
@@ -58,13 +70,21 @@
 
         #posts .article-content .small {
             margin: 0 0 18px;
+
             color: #888;
             font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #posts > .small {
+            color: #999;
+            font-size: 16px;
         }
 
         @media (max-width: 700px) {
             #posts .article-content {
-                padding: 22px;
+                padding: 24px;
             }
 
             #posts .article-content p {
@@ -74,41 +94,68 @@
     </style>
 </head>
 
-<body onload="loadPosts('media')">
+<body>
 
-<header>
-    <a href="index.html">
-        <img src="hotelgamessticker.png" alt="Hotel Games">
-    </a>
+    <header>
+        <a href="index.html">
+            <img
+                src="hotelgamessticker.png"
+                alt="Hotel Games"
+            >
+        </a>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="admin.html">Admin</a>
-        <a href="news.html">News</a>
-        <a href="media.html">Media</a>
-        <a href="community.html">Community</a>
-    </nav>
-</header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="admin.html">Admin</a>
+            <a href="news.html">News</a>
+            <a href="media.html">Media</a>
+            <a href="community.html">Community</a>
+        </nav>
+    </header>
 
-<div class="hero">
-    <h1>Media <span>Updates</span></h1>
-</div>
-
-<section>
-    <div id="posts">
-        <p class="small">Loading posts...</p>
+    <div class="hero">
+        <h1>
+            Media <span>Updates</span>
+        </h1>
     </div>
-</section>
 
-<footer>
-    <div class="footer-red"></div>
+    <section>
+        <div id="posts">
+            <p class="small">Loading posts...</p>
+        </div>
+    </section>
 
-    <div class="footer-main">
-        © 2026 Hotel Games Studios. All Rights Reserved.
-    </div>
-</footer>
+    <footer>
+        <div class="footer-red"></div>
 
-<script type="module" src="./cms.js"></script>
+        <div class="footer-main">
+            © 2026 Hotel Games Studios. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script type="module">
+        import "./cms.js?v=5";
+
+        window.addEventListener("DOMContentLoaded", () => {
+            if (typeof window.loadPosts === "function") {
+                window.loadPosts("media");
+            } else {
+                const postsContainer =
+                    document.getElementById("posts");
+
+                postsContainer.innerHTML = `
+                    <p class="small">
+                        The media posts could not be loaded.
+                        Check cms.js and the browser console.
+                    </p>
+                `;
+
+                console.error(
+                    "loadPosts is not available. cms.js did not finish loading."
+                );
+            }
+        });
+    </script>
 
 </body>
 </html>
